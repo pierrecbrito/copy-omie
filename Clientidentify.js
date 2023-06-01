@@ -26,10 +26,19 @@ const options =  (app_key, app_secret, pagina) => {
     }
 }
 
-async function identify(orderNumber) {
+/**
+ * Localiza o código do cliente correspondente no outro aplicativo (ECOMP)
+ * @param {*} clienteCode 
+ * @returns 
+ */
+async function identify(clienteCode) {
+    let ecomp_clients = await getECOMPClients()
+    let segcomp_clients = await getSEGCOMPClients()
 
+    let cliente = segcomp_clients.filter(c => c.codigo_cliente_omie == clienteCode)[0] //Identifica qual cliente é
+    let clienteECOMP = ecomp_clients.filter(c => c.cnpj_cpf == cliente.cnpj_cpf)[0] //Acha no aplicativo ECOMP
    
-    return responseJson.pedido_venda_produto
+    return clienteECOMP
 }
 
 async function getECOMPClients() {
@@ -53,7 +62,23 @@ async function getECOMPClients() {
 }
 
 async function getSEGCOMPClients() {
+    let segcomp_clients = []
+   
+    let totalDePaginas = 10000
+
+    for (let index = 1; index <= totalDePaginas; index++) {
     
+        const response = await fetch(link, options(APP_KEY_SEGCOMP, APP_SECRET_SEGCOMP, index));
+        const responseJson = await response.json();
+
+        if(totalDePaginas == 10000) {
+            totalDePaginas = responseJson.total_de_paginas
+        }
+
+        responseJson.clientes_cadastro.forEach(c => segcomp_clients.push(c))
+    }
+
+    return segcomp_clients
 }
   
-module.exports = {getECOMPClients}
+module.exports = {identify}
