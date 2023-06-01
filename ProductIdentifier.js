@@ -36,14 +36,25 @@ const options =  (app_key, app_secret, pagina) => {
  * @param {*} clienteCode 
  * @returns 
  */
-async function identify(productCode) {
-    let productsECOMP = await getECOMPProducts()
-    let productsSEG = await getSEGCOMPProducts()
-
+async function identify(productCode, productsSEG, productsECOMP) {
     let produto = productsSEG.filter(p => p.codigo_produto == productCode)[0] //Identifica qual cliente é
     let produtoNaECOMP = productsECOMP.filter(p => p.descricao == produto.descricao)[0] //Acha no aplicativo ECOMP
    
     return produtoNaECOMP
+}
+
+async function changeCodeOfProducts(order) {
+    let productsECOMP = await getECOMPProducts()
+    let productsSEG = await getSEGCOMPProducts()
+
+    //Mudando código dos produtos
+    for (let index = 0; index < order.det.length; index++) {
+        let produtoNaECOMP = await identify(order.det[index].produto.codigo_produto, productsSEG, productsECOMP)
+        
+        order.det[index].produto.codigo_produto = produtoNaECOMP.codigo_produto
+        order.det[index].ide.codigo_item_integracao = Math.random().toString(36).substring(1,7);
+        order.det[index].inf_adic.codigo_local_estoque = 6029200821
+    }
 }
 
 async function getECOMPProducts() {
@@ -86,4 +97,4 @@ async function getSEGCOMPProducts() {
     return segcomp_products
 }
   
-module.exports = {identify}
+module.exports = {changeCodeOfProducts}
