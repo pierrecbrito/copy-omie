@@ -14,10 +14,23 @@ const body = (orderNumber) => {
                 {"numero_pedido":orderNumber}
             ]
         }
+}
+    
+const options =  (orderNumber) => {
+    return {
+        method: "post",
+        headers: { 
+            "Content-Type": "application/json",
+        },
+        body: body(orderNumber)    
     }
+}
 
-async function getOrder() {
-    const response = await fetch(ENDPOINT(index), options);
+async function getOrder(orderNumber) {
+    const response = await fetch(link, options(orderNumber));
     const responseJson = await response.json();
+
+    return responseJson.pedido_venda_produto
 }
   
+module.exports = {getOrder}
