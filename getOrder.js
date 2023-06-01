@@ -15,3 +15,9 @@ const body = (orderNumber) => {
             ]
         }
     }
+
+async function getOrder() {
+    const response = await fetch(ENDPOINT(index), options);
+    const responseJson = await response.json();
+}
+  
