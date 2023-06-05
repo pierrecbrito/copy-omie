@@ -96,5 +96,20 @@ async function getSEGCOMPProducts() {
 
     return segcomp_products
 }
+
+async function teste() {
+    let productsECOMP = await getECOMPProducts()
+    let productsSEG = await getSEGCOMPProducts()
+
+    let code = 400258991
+
+    console.log('SEGCOMP: ')
+    console.log(productsSEG.filter(p => p.codigo_produto == code)[0])
+
+    console.log('ECOMP: ')
+    console.log(productsECOMP.filter(p=> p.codigo_produto == code)[0])
+}
+
+teste()
   
 module.exports = {changeCodeOfProducts}

@@ -12,7 +12,7 @@ async function main() {
     order.cabecalho.codigo_pedido = 59886623
     order.cabecalho.etapa = "00"
     order.cabecalho.origem_pedido = "API"
-    order.cabecalho.codigo_pedido_integracao = "332sd5859s87d"
+    order.cabecalho.codigo_pedido_integracao = Math.random().toString(36).substring(1,7)
     order.cabecalho.codigo_cliente = clienteECOMP.codigo_cliente_omie
     order.informacoes_adicionais.codigo_conta_corrente = 6054324846
     order.informacoes_adicionais.codVend = 0
