@@ -1,4 +1,4 @@
-const segcomp = require('./getOrder')
+const segcomp = require('./getOS')
 
 async function main() {
     
