@@ -5,7 +5,6 @@ const ecomp = require('./sendOrder')
 
 async function main() {
     let order = await segcomp.getOrder(109)
-    console.log(order)
 
     const clienteECOMP = await clientes.identify(order.cabecalho.codigo_cliente)
 
@@ -19,8 +18,6 @@ async function main() {
     delete order.departamentos
 
     await produtos.changeCodeOfProducts(order)
-
-    console.log(order)
 
     let result = await ecomp.send(order)
     console.log(result)
