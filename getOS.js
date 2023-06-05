@@ -25,7 +25,7 @@ const options =  (OSNumber) => {
 }
 
 async function getOS(OSNumber) {
-    const response = await fetch(link, options(OSNumber));
+    const response = await fetch(link, options(`${OSNumber}`));
     const responseJson = await response.json();
    
     return responseJson
