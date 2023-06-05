@@ -81,9 +81,9 @@ async function changeCodeOfServices(os) {
 
     //Mudando código dos produtos
     for (let index = 0; index < os.ServicosPrestados.length; index++) {
-        let service = await identify(os.ServicosPrestados[index].intListar.nCodServ, servicesSEG, servicesECOMP)
+        let service = await identify(os.ServicosPrestados[index].nCodServico, servicesSEG, servicesECOMP)
         
-        os.ServicosPrestados[index].intListar.nCodServ = service.intListar.nCodServ
+        os.ServicosPrestados[index].nCodServico = service.intListar.nCodServ
         delete os.ServicosPrestados[index].nIdItem
     }
 }
