@@ -4,7 +4,7 @@ const produtos = require('./ProductIdentifier')
 const ecomp = require('./sendOrder')
 
 async function main() {
-    let order = await segcomp.getOrder(109)
+    let order = await segcomp.getOrder(148)
     await orderTreatament(order)   
 
     let result = await ecomp.send(order)

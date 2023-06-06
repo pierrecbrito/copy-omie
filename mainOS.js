@@ -4,7 +4,7 @@ const services = require('./SIdentifier')
 const ecomp = require('./sendOS')
 
 async function main() {
-    let os = await segcomp.getOS(639)
+    let os = await segcomp.getOS(810)
 
     await osTreatament(os)
 

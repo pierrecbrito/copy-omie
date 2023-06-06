@@ -110,6 +110,5 @@ async function teste() {
     console.log(productsECOMP.filter(p=> p.codigo_produto == code)[0])
 }
 
-teste()
   
 module.exports = {changeCodeOfProducts}
