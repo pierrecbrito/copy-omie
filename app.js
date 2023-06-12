@@ -54,6 +54,4 @@ async function sendOS(numberOS)  {
     console.log(result.cDescStatus)
 }
 
-
-
 module.exports = {sendOrderAndOS, sendOrder, sendOS}
