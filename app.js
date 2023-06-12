@@ -33,8 +33,8 @@ async function osTreatament(os) {
 }
 
 async function sendOrderAndOS(numberOrder, numberOS) {
-    sendOrder(numberOrder)
-    sendOS(numberOS)
+    await sendOrder(numberOrder)
+    await sendOS(numberOS)
 }
 
 async function sendOrder(numberOrder)  {

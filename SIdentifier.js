@@ -71,7 +71,8 @@ async function getSEGCOMPServices() {
 async function identify(serviceCode, servicesSEG, servicesECOMP) {
     let service = servicesSEG.filter(s => s.intListar.nCodServ == serviceCode)[0] //Identifica qual cliente é
     let serviceECOMP= servicesECOMP.filter(s => s.cabecalho.cDescricao == service.cabecalho.cDescricao)[0] //Acha no aplicativo ECOMP
-   
+    console.log(service)
+    console.log(serviceECOMP)
     return serviceECOMP
 }
 
